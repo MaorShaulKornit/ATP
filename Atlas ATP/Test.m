@@ -35,16 +35,16 @@ HSPos = size(info,2)+1;
 fNameOD = 'ATP_OD';
 fNameReg = 'ATP_Reg';
 fNameLines = 'ATP_Lines';
-% obj.AddEl(info);
-% obj1.AddEl(info1);
-% obj2.AddEl(info2);
+obj.AddEl(info);
+obj1.AddEl(info1);
+obj2.AddEl(info2);
 obj3.AddEl(info3);
-% obj.Run
-% obj1.Run
-% obj2.Run
+obj.Run
+obj1.Run
+obj2.Run
 obj3.Run
-% obj1.saveOneBits(fNameOD);
-% obj2.saveOneBits(fNameReg);
+obj1.saveOneBits(fNameOD);
+obj2.saveOneBits(fNameReg);
 obj3.saveOneBits(fNameLines);
 %%
 pr = 0.22;
