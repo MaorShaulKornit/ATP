@@ -31,58 +31,58 @@ posStart = DB.BiDir.Pos0C;
 offset = DB.BiDir.OffsetC;
 bidOffset = DB.BiDir.BidOffset;
 scanOffset = DB.BiDir.ScanOffset;
-ChInSec = ceil(length(DB.ChColor)/2);
+ChInSec = ceil(length(DB.ChColor)/3);
 ChArr = PArray([DB.ChColor,DB.ChColor]);
-for q = 1:DB.NPH      
+for q = 1:DB.NPH
     Apos = posStart + (q-1)* DB.BiDir.offfsetSec;
     if ChArr.len <= length(DB.ChColor)
-        Apos = Apos + [0,Sizes.PH_508_mm];
-    end     
-for p = 1:ChInSec
-    if ChArr.isEmpty
-        continue
+%         Apos = Apos + [0,Sizes.PH_508_mm];
     end
-    Ch = ChArr.pop{1};
-    info(ind).type = 'BiDir';
-    info(ind).pos = Apos + offset.*(p-1);
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 1;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;
-
-    info(ind).type = 'Scan';
-    info(ind).pos = Apos + offset.*(p-1) + scanOffset;
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 1;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;    
-    
-    info(ind).type = 'BiDir';
-    info(ind).pos = Apos + offset.*(p-1) + bidOffset;
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 0;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;    
-    
-    info(ind).type = 'Scan';
-    info(ind).pos = Apos + offset.*(p-1) + bidOffset + scanOffset;
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));    
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 0;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;
-end
+    for p = 1:ChInSec
+        if ChArr.isEmpty
+            continue
+        end
+        Ch = ChArr.pop{1};
+        info(ind).type = 'BiDir';
+        info(ind).pos = Apos + offset.*(p-1);
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 1;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
+        
+        info(ind).type = 'Scan';
+        info(ind).pos = Apos + offset.*(p-1) + scanOffset;
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 1;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
+        
+        info(ind).type = 'BiDir';
+        info(ind).pos = Apos + offset.*(p-1) + bidOffset;
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 0;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
+        
+        info(ind).type = 'Scan';
+        info(ind).pos = Apos + offset.*(p-1) + bidOffset + scanOffset;
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 0;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
+    end
 end
 % section13 - Lines
 lineOffset = [DB.Lines.W,0] + [DB.Lines.lineOffset,0];
@@ -232,53 +232,57 @@ for q = 1:DB.NPH+1
     Apos = posStart + (q-1)* DB.BiDir.offfsetSec;
     if isempty(ChArr.Arr) && isDone
         ChArr = PArray([DB.ChWhite]);
+%         Apos = Apos + [0,Sizes.PH_508_mm];
         isDone = false;
     end
-for p = 1:ChInSec
-    if isempty(ChArr.Arr)
-        continue
+%     if ChArr.len <= length(DB.ChWhite)
+%         Apos = Apos + [0,Sizes.PH_508_mm];
+%     end
+    for p = 1:ChInSec
+        if isempty(ChArr.Arr)
+            continue
+        end
+        Ch = ChArr.pop{1};
+        info(ind).type = 'BiDir';
+        info(ind).pos = Apos + offset.*(p-1);
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 1;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
+        
+        info(ind).type = 'Scan';
+        info(ind).pos = Apos + offset.*(p-1) + scanOffset;
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 1;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
+        
+        info(ind).type = 'BiDir';
+        info(ind).pos = Apos + offset.*(p-1) + bidOffset;
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 0;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
+        
+        info(ind).type = 'Scan';
+        info(ind).pos = Apos + offset.*(p-1) + bidOffset + scanOffset;
+        info(ind).ch = Ch;
+        info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
+        info(ind).sz = DB.BiDir.size;
+        info(ind).dist = DB.BiDir.dist;
+        info(ind).isref = 0;
+        info(ind).cName = info(ind).ch;
+        ind = ind + 1;
     end
-    Ch = ChArr.pop{1};
-    info(ind).type = 'BiDir';
-    info(ind).pos = Apos + offset.*(p-1);
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 1;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;
-
-    info(ind).type = 'Scan';
-    info(ind).pos = Apos + offset.*(p-1) + scanOffset;
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 1;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;    
-    
-    info(ind).type = 'BiDir';
-    info(ind).pos = Apos + offset.*(p-1) + bidOffset;
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 0;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;    
-    
-    info(ind).type = 'Scan';
-    info(ind).pos = Apos + offset.*(p-1) + bidOffset + scanOffset;
-    info(ind).ch = Ch;
-    info(ind).msk = DB.BiDir.msk(ch2ind(DB,info(ind).ch));
-    info(ind).sz = DB.BiDir.size;
-    info(ind).dist = DB.BiDir.dist;
-    info(ind).isref = 0;
-    info(ind).cName = info(ind).ch;
-    ind = ind + 1;
-end
 end
 % Section23 Lines white
 

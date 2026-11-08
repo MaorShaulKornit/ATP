@@ -3,7 +3,7 @@
 clc
 clear 
 close 
-Res = [160,160];
+Res = [150,150];
 DB = makeDB;
 obj = ATPMker(DB.PPRSz,Res,DB,'K');
 obj.init;

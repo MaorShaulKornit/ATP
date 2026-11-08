@@ -25,13 +25,13 @@ DB.OD.W.pos0 = [25,25]; % Starting position of square 1 minus offset(pos 1 will 
 DB.OD.msk = [0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6].*1.2; % DB.AllCh oeder
 DB.OD.W.Ch = DB.ChWhite(1:4);
 %biDir + Scan
-DB.BiDir.Pos0C = [40,49];
-DB.BiDir.Pos0W = [25,49];
-DB.BiDir.size = [2.56,2.56];
+DB.BiDir.Pos0C = [40,44];
+DB.BiDir.Pos0W = [25,44];
+DB.BiDir.size = [2.56,1];
 DB.BiDir.BidOffset = [15,0]; % UD/Y/Scan Distance distance between upper and lower bidirs
 DB.BiDir.ScanOffset = [0,15]; % LR/X/CrosScan distance between bidir and scan
 DB.BiDir.dist = [1,0]; % UD/Y/Scan Distance between blocks (measured distance) 
-DB.BiDir.OffsetC = [33,0]; % LR/X/CrosScan offset between channels
+DB.BiDir.OffsetC = [28,0]; % LR/X/CrosScan offset between channels
 DB.BiDir.OffsetW = [33,0]; % LR/X/CrosScan offset between channels
 DB.BiDir.offfsetSec = [0,Sizes.PH_508_mm];
 

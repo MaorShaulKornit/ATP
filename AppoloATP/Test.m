@@ -54,7 +54,6 @@ applyFuncToImagesInF(folderTree('ATP_OD'),@cropImgVerticalyByInd,indS,indE);
 applyFuncToImagesInF(folderTree('ATP_OD'),@addHeatStripesToImgSize,pr,W,margin);
 applyFuncToImagesInF(folderTree('ATP_Reg'),@addHeatStripesToImageByData,pr,W,margin);
 applyFuncToImagesInF(folderTree(fNameLines),@addHeatStripesToImageByData,pr,W,margin);
-
 ODOffsetPos = pix2mm(indS,600);
 R = obj.getReport;
 % R = fixPos(R);
@@ -63,7 +62,7 @@ imshow(prv);hold on
 plot(mm2pix(R.XPos,Res(2)),mm2pix(R.YPos,Res(1)),'*');
 % PImage.SaveAsPNG(prv,'preview',[600,600]);
 PathPlot([[1,size(prv,1)/2];[size(prv,2),size(prv,1)/2]])
-
-%%
 PImage.SaveAsPNG(prv,'preview',[800,800]);
-writetable(R,'Locations34.csv');
+writetable(R,'Locations35.csv');
+PingMe
+
